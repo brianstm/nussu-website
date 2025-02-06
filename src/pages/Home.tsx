@@ -1,14 +1,16 @@
 // Brians
+import { Title } from "@/components/ui/title";
 
 function Home() {
-    return (
-      <div>
-        <h1>Home</h1>
-        <p>This is the Home Page</p>
-        <p>To be done by: Brians</p>
-      </div>
-    );
-  }
-  
-  export default Home;
-  
+  return (
+    <div>
+      <Title title="Empowering Students, Shaping Futures." description="" />
+      <Title
+        title="Campus Life"
+        description=" Find and attend events, browse and join organizations, and showcase your involvement."
+      />
+    </div>
+  );
+}
+
+export default Home;
