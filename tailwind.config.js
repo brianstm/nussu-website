@@ -14,6 +14,10 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      screens: {
+        tablet: "810px",
+        laptop: "1436px",
+      },
       keyframes: {
         marquee: {
           "0%": {

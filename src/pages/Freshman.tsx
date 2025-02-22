@@ -1,14 +1,12 @@
-// Lui Leng
+import List from "@/components/ui/list";
+import Cards from "@/components/ui/cards";
 
 function Freshman() {
-    return (
-      <div>
-        <h1>Freshman</h1>
-        <p>This is the Freshman Page</p>
-        <p>To be done by: Liu Leng</p>
-      </div>
-    );
-  }
-  
-  export default Freshman;
-  
+  return (
+    <div>
+      <Cards />
+    </div>
+  );
+}
+
+export default Freshman;
