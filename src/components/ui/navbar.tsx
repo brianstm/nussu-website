@@ -114,6 +114,7 @@ export default function NavBar() {
           >
             <div className="flex h-full items-center justify-center px-6">
               <div className="w-full md:max-w-[55%] flex flex-col md:flex-row justify-between">
+                {/* LEFT COLUMN (Menu items) */}
                 <div
                   style={{
                     display: "flex",
@@ -163,61 +164,69 @@ export default function NavBar() {
                   ))}
                 </div>
 
+                {/* RIGHT COLUMN (Address & emails) */}
                 <div
-                  className="mt-10 md:mt-0 text-base md:text-lg"
+                  className="mt-10 md:mt-16 md:ml-10 text-base md:text-lg"
                   style={{ fontSize: "22px" }}
                 >
                   <div className="flex flex-col justify-center md:justify-start h-full md:h-auto mt-0 md:mt-10">
-                    <p>S6 Level 5 Science</p>
-                    <p>Drive 2 Singapore</p>
-                    <p>117548</p>
+                    <span className="space-y-2 lg:ml-8">
+                      <p>S6 Level 5 Science</p>
+                      <p>Drive 2 Singapore</p>
+                      <p>117548</p>
+                    </span>
 
-                    <br />
+                    {/* Increase spacing between address and emails */}
+                    <div className="mt-20">
+                      {/* Email 1 */}
+                      <div className="mb-4">
+                        <a
+                          href="mailto:nussu@u.nus.edu"
+                          className="
+                            relative inline-block
+                            pb-1
+                            after:content-['']
+                            after:absolute
+                            after:left-0
+                            after:bottom-[-2px]
+                            after:w-full
+                            after:h-[1px]
+                            after:bg-current
+                            after:scale-x-100
+                            after:origin-left
+                            after:transition-transform
+                            after:duration-300
+                            hover:after:scale-x-0
+                          "
+                        >
+                          nussu@u.nus.edu
+                        </a>
+                      </div>
 
-                    <div>
-                      <a
-                        href="mailto:nussu@u.nus.edu"
-                        className="
-                        relative inline-block
-                        after:content-['']
-                        after:absolute
-                        after:left-0
-                        after:bottom-0
-                        after:w-full
-                        after:h-[1px]
-                        after:bg-current
-                        after:scale-x-100
-                        after:origin-left
-                        after:transition-transform
-                        after:duration-300
-                        hover:after:scale-x-0
-                      "
-                      >
-                        nussu@u.nus.edu
-                      </a>
-                    </div>
-                    <br />
-                    <div>
-                      <a
-                        href="mailto:feedback@nussu.org.sg"
-                        className="
-                        relative inline-block
-                        after:content-['']
-                        after:absolute
-                        after:left-0
-                        after:bottom-0
-                        after:w-full
-                        after:h-[1px]
-                        after:bg-current
-                        after:scale-x-100
-                        after:origin-left
-                        after:transition-transform
-                        after:duration-300
-                        hover:after:scale-x-0
-                      "
-                      >
-                        feedback@nussu.org.sg
-                      </a>
+                      {/* Email 2 */}
+                      <div>
+                        <a
+                          href="mailto:feedback@nussu.org.sg"
+                          className="
+                            relative inline-block
+                            pb-1
+                            after:content-['']
+                            after:absolute
+                            after:left-0
+                            after:bottom-[-2px]
+                            after:w-full
+                            after:h-[1px]
+                            after:bg-current
+                            after:scale-x-100
+                            after:origin-left
+                            after:transition-transform
+                            after:duration-300
+                            hover:after:scale-x-0
+                          "
+                        >
+                          feedback@nussu.org.sg
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
