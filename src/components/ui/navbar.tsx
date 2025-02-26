@@ -74,6 +74,7 @@ export default function NavBar() {
 
   return (
     <>
+      {/* TOP NAVBAR */}
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all ${
           scrolled ? "bg-black/90 backdrop-blur-lg shadow-lg" : "bg-transparent"
@@ -84,6 +85,7 @@ export default function NavBar() {
             Logo
           </Link>
 
+          {/* DESKTOP MENU */}
           <div className="hidden md:flex gap-8">
             {["Home", "About", "Contact"].map((item) => (
               <motion.div
@@ -97,10 +99,12 @@ export default function NavBar() {
             ))}
           </div>
 
+          {/* MOBILE TOGGLE BUTTON */}
           <MenuToggle toggle={toggleMenu} isOpen={isOpen} />
         </div>
       </nav>
 
+      {/* MOBILE OVERLAY MENU */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -115,7 +119,7 @@ export default function NavBar() {
             <div className="flex h-full items-center justify-center px-6">
               <div className="w-full md:max-w-[55%] flex flex-col md:flex-row justify-between">
                 {/* LEFT COLUMN (Menu items) */}
-                <div className="flex flex-col md:gap-6">
+                <div className="flex flex-col gap-2 md:gap-6">
                   {[
                     "Home",
                     "About",
@@ -125,10 +129,13 @@ export default function NavBar() {
                   ].map((item) => (
                     <motion.div
                       key={item}
-                      className="relative"
+                      /* 
+                          On mobile (default), h-auto
+                          On md & above, use fixed height
+                        */
+                      className="relative h-[2rem] md:h-[3.5rem]"
                       style={{
                         color: item === "Home" ? "#EF7B00" : "#fafafa",
-                        height: "3.5rem",
                         display: "flex",
                         alignItems: "stretch",
                         flexShrink: 0,
@@ -140,7 +147,12 @@ export default function NavBar() {
                     >
                       <motion.a
                         href={`/${item.toLowerCase().replace(" ", "-")}`}
-                        className="absolute inset-0 w-full h-full flex items-center justify-start text-3xl sm:text-4xl md:text-[3.5rem] text-inherit no-underline whitespace-nowrap"
+                        className="
+                            absolute inset-0 w-full h-full
+                            flex items-center justify-start
+                            text-4xl sm:text-5xl md:text-[3.5rem]
+                            text-inherit no-underline whitespace-nowrap
+                          "
                       >
                         {item}
                       </motion.a>
@@ -150,19 +162,19 @@ export default function NavBar() {
 
                 {/* RIGHT COLUMN (Address & emails) */}
                 <div
-                  className="mt-10 md:mt-16 md:ml-10 text-base md:text-lg"
-                  style={{ fontSize: "22px" }}
+                  className="
+                    mt-10 md:mt-16 md:ml-10
+                    text-xl sm:text-2xl md:text-[22px]
+                  "
                 >
                   <div className="flex flex-col justify-center md:justify-start h-full md:h-auto mt-0 md:mt-10">
-                    <span className="space-y-2 lg:ml-8">
+                    <span className="space-y-2 lg:ml-8 text-base sm:text-lg md:text-xl mt-4 sm:mt-6 md:mt-8 lg:mt-10">
                       <p>S6 Level 5 Science</p>
                       <p>Drive 2 Singapore</p>
                       <p>117548</p>
                     </span>
 
-                    {/* Increase spacing between address and emails */}
                     <div className="mt-20">
-                      {/* Email 1 */}
                       <div className="mb-4">
                         <a
                           href="mailto:nussu@u.nus.edu"
@@ -186,8 +198,6 @@ export default function NavBar() {
                           nussu@u.nus.edu
                         </a>
                       </div>
-
-                      {/* Email 2 */}
                       <div>
                         <a
                           href="mailto:feedback@nussu.org.sg"
