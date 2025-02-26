@@ -1,6 +1,8 @@
 "use client";
 
+import Cards from "@/components/ui/cards";
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
+import events from "@/data/events";
 
 export default function CampusLifePage() {
   return (
@@ -25,11 +27,7 @@ export default function CampusLifePage() {
 
       <section className="absolute top-[100vh] w-full h-screen bg-white">
         <div className="px-8 py-12">
-          <h2 className="text-2xl font-semibold mb-4">Key Events</h2>
-          <p className="text-gray-700">
-            Describe the next section of content here. As the user scrolls, this
-            section slides over the pinned hero.
-          </p>
+          <Cards events={events} itemsPerRow={2} />
         </div>
       </section>
     </main>
