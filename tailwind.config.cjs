@@ -9,14 +9,34 @@ module.exports = {
   ],
   prefix: "",
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
+      fontFamily: {
+        sans: ["Frutiger", "sans-serif"],
+        sansbold: ["Frutiger_bold", "sans-serif"],
+        manrope: ["Manrope", "sans-serif"],
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      screens: {
+        tablet: "810px",
+        laptop: "1436px",
+      },
+      keyframes: {
+        marquee: {
+          "0%": {
+            transform: "translate(-50%, -50%) rotate(-45deg) translateX(0)",
+          },
+          "100%": {
+            transform: "translate(-50%, -50%) rotate(-45deg) translateX(-50%)",
+          },
+        },
+      },
+      animation: {
+        marquee: "marquee 20s linear infinite",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
