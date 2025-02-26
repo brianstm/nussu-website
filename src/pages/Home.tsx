@@ -2,7 +2,6 @@ import { useState, useEffect, JSX } from "react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import Footer from "@/components/ui/footer";
 import { Title } from "@/components/ui/title";
-import NavBar from "@/components/ui/navbar";
 
 const backgroundImages1 = ["/images/1.jpg", "/images/2.jpg"];
 const backgroundImages2 = ["/images/3.jpg", "/images/4.jpg"];
@@ -132,7 +131,6 @@ function Home() {
       {renderImage(backgroundImages4, imageIndices.img4, positions.img4, 4, 10)}
 
       <div className="relative z-10">
-        <NavBar />
         <BlurFade delay={0.25} inView direction="up" offset={20}>
           <div className="mt-56 text-center">
             <Title

@@ -27,8 +27,8 @@ const MenuToggle = ({ toggle, isOpen }: MenuToggleProps) => (
       animate={isOpen ? "open" : "closed"}
       whileHover={{ scale: 1.1 }}
       viewBox="0 0 23 23"
-      width="23"
-      height="23"
+      width="30"
+      height="30"
     >
       <Path
         variants={{
@@ -68,7 +68,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 bg-transparent transition-all">
+      <nav className="top-0 left-0 w-full z-50 bg-transparent transition-all relative">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
           <Link href="/" className={`${textColor} text-2xl font-bold`}>
             Logo
