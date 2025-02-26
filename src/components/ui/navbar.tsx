@@ -168,7 +168,7 @@ export default function NavBar() {
                   "
                 >
                   <div className="flex flex-col justify-center md:justify-start h-full md:h-auto mt-0 md:mt-10">
-                    <span className="space-y-2 lg:ml-8 text-base sm:text-lg md:text-xl mt-4 sm:mt-6 md:mt-8 lg:mt-10">
+                    <span className="space-y-2 lg:ml-8 text-base sm:text-lg md:text-xl sm:mt-6">
                       <p>S6 Level 5 Science</p>
                       <p>Drive 2 Singapore</p>
                       <p>117548</p>
