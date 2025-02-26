@@ -115,13 +115,7 @@ export default function NavBar() {
             <div className="flex h-full items-center justify-center px-6">
               <div className="w-full md:max-w-[55%] flex flex-col md:flex-row justify-between">
                 {/* LEFT COLUMN (Menu items) */}
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1.5rem",
-                  }}
-                >
+                <div className="flex flex-col md:gap-6">
                   {[
                     "Home",
                     "About",
@@ -146,17 +140,7 @@ export default function NavBar() {
                     >
                       <motion.a
                         href={`/${item.toLowerCase().replace(" ", "-")}`}
-                        className="absolute inset-0 w-full h-full flex items-center justify-start"
-                        style={{
-                          color: "inherit",
-                          textDecoration: "none",
-                          padding: 0,
-                          margin: 0,
-                          fontSize: "3.5rem",
-                          display: "flex",
-                          alignItems: "center",
-                          whiteSpace: "nowrap",
-                        }}
+                        className="absolute inset-0 w-full h-full flex items-center justify-start text-3xl sm:text-4xl md:text-[3.5rem] text-inherit no-underline whitespace-nowrap"
                       >
                         {item}
                       </motion.a>
