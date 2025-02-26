@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -32,21 +32,21 @@ const MenuToggle = ({ toggle, isOpen }: MenuToggleProps) => (
     >
       <Path
         variants={{
-          closed: { d: "M 2 2.5 L 20 2.5", stroke: "#0000FF" },
-          open: { d: "M 3 16.5 L 17 2.5", stroke: "#0000FF" },
+          closed: { d: "M 2 2.5 L 20 2.5", stroke: "#003D7C" },
+          open: { d: "M 3 16.5 L 17 2.5", stroke: "#003D7C" },
         }}
       />
       <Path
         variants={{
-          closed: { opacity: 1, d: "M 2 9.423 L 20 9.423", stroke: "#0000FF" },
+          closed: { opacity: 1, d: "M 2 9.423 L 20 9.423", stroke: "#003D7C" },
           open: { opacity: 0 },
         }}
         transition={{ duration: 0.1 }}
       />
       <Path
         variants={{
-          closed: { d: "M 2 16.346 L 20 16.346", stroke: "#0000FF" },
-          open: { d: "M 3 2.5 L 17 16.346", stroke: "#0000FF" },
+          closed: { d: "M 2 16.346 L 20 16.346", stroke: "#003D7C" },
+          open: { d: "M 3 2.5 L 17 16.346", stroke: "#003D7C" },
         }}
       />
     </motion.svg>
@@ -55,17 +55,11 @@ const MenuToggle = ({ toggle, isOpen }: MenuToggleProps) => (
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const textColor = scrolled ? "text-[#fafafa]" : "text-black";
+  // Always black text, or choose any color you like:
+  const textColor = "text-black";
 
   const hoverMotion = {
     whileHover: { x: 5, color: "#FFA500" },
@@ -74,23 +68,17 @@ export default function NavBar() {
 
   return (
     <>
-      {/* TOP NAVBAR */}
-      <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all ${
-          scrolled ? "bg-black/90 backdrop-blur-lg shadow-lg" : "bg-transparent"
-        }`}
-      >
+      <nav className="fixed top-0 left-0 w-full z-50 bg-transparent transition-all">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
           <Link href="/" className={`${textColor} text-2xl font-bold`}>
             Logo
           </Link>
 
-          {/* DESKTOP MENU */}
           <div className="hidden md:flex gap-8">
             {["Home", "About", "Contact"].map((item) => (
               <motion.div
                 key={item}
-                style={{ color: scrolled ? "#fafafa" : "#000000" }}
+                style={{ color: "#000000" }}
                 whileHover={hoverMotion.whileHover}
                 transition={hoverMotion.transition}
               >
@@ -99,12 +87,10 @@ export default function NavBar() {
             ))}
           </div>
 
-          {/* MOBILE TOGGLE BUTTON */}
           <MenuToggle toggle={toggleMenu} isOpen={isOpen} />
         </div>
       </nav>
 
-      {/* MOBILE OVERLAY MENU */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -118,7 +104,6 @@ export default function NavBar() {
           >
             <div className="flex h-full items-center justify-center px-6">
               <div className="w-full md:max-w-[55%] flex flex-col md:flex-row justify-between">
-                {/* LEFT COLUMN (Menu items) */}
                 <div className="flex flex-col gap-2 md:gap-6">
                   {[
                     "Home",
@@ -129,10 +114,6 @@ export default function NavBar() {
                   ].map((item) => (
                     <motion.div
                       key={item}
-                      /* 
-                          On mobile (default), h-auto
-                          On md & above, use fixed height
-                        */
                       className="relative h-[2rem] md:h-[3.5rem]"
                       style={{
                         color: item === "Home" ? "#EF7B00" : "#fafafa",
@@ -160,7 +141,6 @@ export default function NavBar() {
                   ))}
                 </div>
 
-                {/* RIGHT COLUMN (Address & emails) */}
                 <div
                   className="
                     mt-10 md:mt-16 md:ml-10

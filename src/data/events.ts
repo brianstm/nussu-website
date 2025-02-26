@@ -1,4 +1,4 @@
-const events = [
+const key_events = [
   {
     title: "Supernova",
     imageUrl:
@@ -37,4 +37,67 @@ const events = [
   },
 ];
 
-export default events;
+const event_highlights = [
+  {
+    title: "Supernova",
+    imageUrl: "/images/default.png",
+    href: "/supernova",
+  },
+  {
+    title: "Student Life Fair",
+    imageUrl: "/images/default.png",
+    href: "/student-life-fair",
+  },
+  {
+    title: "Exam Welfare Pack",
+    imageUrl: "/images/default.png",
+    href: "/exam-welfare-pack",
+  },
+  {
+    title: "Freshman Welfare Gift",
+    imageUrl: "/images/default.png",
+    href: "/freshman-welfare-gift",
+  },
+  {
+    title: "Freshman Welfare Gift",
+    imageUrl: "/images/default.png",
+    href: "/union-camp",
+  },
+  {
+    title: "Rag & Flag",
+    imageUrl: "/images/default.png",
+    href: "/rag-flag",
+  },
+  {
+    title: "Supernova",
+    imageUrl: "/images/default.png",
+    href: "/supernova",
+  },
+  {
+    title: "Student Life Fair",
+    imageUrl: "/images/default.png",
+    href: "/student-life-fair",
+  },
+  {
+    title: "Exam Welfare Pack",
+    imageUrl: "/images/default.png",
+    href: "/exam-welfare-pack",
+  },
+  {
+    title: "Freshman Welfare Gift",
+    imageUrl: "/images/default.png",
+    href: "/freshman-welfare-gift",
+  },
+  {
+    title: "Union Camp",
+    imageUrl: "/images/default.png",
+    href: "/union-camp",
+  },
+  {
+    title: "Rag & Flag",
+    imageUrl: "/images/default.png",
+    href: "/rag-flag",
+  },
+];
+
+export { key_events, event_highlights };

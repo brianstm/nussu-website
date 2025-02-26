@@ -98,7 +98,7 @@ const Footer = () => {
             © 2024 — National University of Singapore Students' Union
           </p>
           <p className="md:text-[0.9rem] text-[0.7rem]">
-            Designed by Arnav, Brians Tjipto, Cheng Lui Leng, Zehua Zhang
+            Designed by Arnav Goel, Brians Tjipto, Cheng Lui Leng, Zehua Zhang
           </p>
         </div>
       </div>

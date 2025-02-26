@@ -2,22 +2,21 @@
 
 import { ArrowRight } from "@phosphor-icons/react";
 
-// Define your event interface
 interface Event {
   title: string;
   imageUrl: string;
   href: string;
 }
 
-// Props for the Cards component
 interface CardsProps {
   events: Event[];
   itemsPerRow: number;
+  headerText?: string;
 }
 
 const Card = ({ event }: { event: Event }) => {
   return (
-    <div className="group relative overflow-hidden rounded-lg h-[240px] laptop:h-[448px] mb-8">
+    <div className="group relative overflow-hidden rounded-lg bg-white h-[240px] laptop:h-[448px] mb-8">
       <a
         href={event.href}
         className="block transition duration-700 transform group-hover:scale-105 group-hover:brightness-75"
@@ -25,7 +24,7 @@ const Card = ({ event }: { event: Event }) => {
         <img
           src={event.imageUrl}
           alt={event.title}
-          className="w-full h-[240px] object-cover laptop:h-[448px] mb-8 rounded-lg"
+          className="w-full h-full object-cover rounded-lg"
         />
       </a>
 
@@ -34,7 +33,7 @@ const Card = ({ event }: { event: Event }) => {
       </div>
 
       <div className="absolute bottom-8 right-8 pointer-events-none">
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-visible">
           <div className="absolute inset-0 bg-white bg-opacity-20 rounded-[4px] transform -translate-x-[300%] group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
           <div className="relative text-white opacity-0 group-hover:opacity-100 transition-all duration-700">
             <ArrowRight
@@ -48,16 +47,19 @@ const Card = ({ event }: { event: Event }) => {
   );
 };
 
-export default function Cards({ events, itemsPerRow }: CardsProps) {
+export default function Cards({
+  events,
+  itemsPerRow,
+  headerText = "Key Events",
+}: CardsProps) {
   return (
     <div className="mx-auto p-4 tablet:p-0 tablet:max-w-[730px] laptop:max-w-[1206px] max-w-none">
       <h2 className="text-section-name text-base font-manrope pb-16 font-semibold">
-        Key Events
+        {headerText}
       </h2>
 
-      {/* Dynamic grid based on itemsPerRow */}
       <div
-        className="grid gap-4"
+        className="grid gap-4 bg-white"
         style={{
           gridTemplateColumns: `repeat(${itemsPerRow}, minmax(0, 1fr))`,
         }}
