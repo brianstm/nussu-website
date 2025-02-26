@@ -58,7 +58,6 @@ export default function NavBar() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Always black text, or choose any color you like:
   const textColor = "text-black";
 
   const hoverMotion = {
