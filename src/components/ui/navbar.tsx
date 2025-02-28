@@ -67,7 +67,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="top-0 left-0 w-full z-50 bg-transparent transition-all relative">
+      <nav className="font-sansbold top-0 left-0 w-full z-50 bg-transparent transition-all relative">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
           <Link href="/" className={`${textColor} text-2xl font-bold`}>
             Logo
@@ -102,8 +102,8 @@ export default function NavBar() {
             style={{ backgroundColor: "#111111", color: "#fafafa" }}
           >
             <div className="flex h-full items-center justify-center px-6">
-              <div className="w-full md:max-w-[55%] flex flex-col md:flex-row justify-between">
-                <div className="flex flex-col gap-2 md:gap-6">
+              <div className="w-full md:max-w-[80%] flex flex-col md:flex-row justify-between">
+                <div className="flex flex-col gap-4 md:gap-6">
                   {[
                     "Home",
                     "About",

@@ -1,7 +1,10 @@
 import { useState, useEffect, JSX } from "react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import Footer from "@/components/ui/footer";
-import { Title } from "@/components/ui/title";
+import Cards from "@/components/ui/cards";
+import { key_events, event_highlights } from "@/data/events";
+import ScrollIndicator from "@/components/ui/ScrollIndicator";
+import NussuOrgChart from "@/components/ui/NussuOrgChart";
 
 const backgroundImages1 = ["/images/1.jpg", "/images/2.jpg"];
 const backgroundImages2 = ["/images/3.jpg", "/images/4.jpg"];
@@ -119,7 +122,7 @@ function Home() {
 
   return (
     <div className="relative h-screen overflow-x-hidden">
-      {renderImage(backgroundImages1, imageIndices.img1, positions.img1, 1, 0)}
+      {/* {renderImage(backgroundImages1, imageIndices.img1, positions.img1, 1, 0)}
       {renderImage(backgroundImages2, imageIndices.img2, positions.img2, 2, 20)}
       {renderImage(
         backgroundImages3,
@@ -128,18 +131,35 @@ function Home() {
         3,
         -20
       )}
-      {renderImage(backgroundImages4, imageIndices.img4, positions.img4, 4, 10)}
-
+      {renderImage(backgroundImages4, imageIndices.img4, positions.img4, 4, 10)} */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <ScrollIndicator />
+      </div>
       <div className="relative z-10">
         <BlurFade delay={0.25} inView direction="up" offset={20}>
           <div className="mt-56 text-center">
-            <Title
-              title="Empowering Students, Shaping Futures."
-              description=""
-            />
+            <div className="flex flex-col items-center justify-center h-full text-center px-4">
+              <p className="text-base font-manrope md:text-lg tracking-wide text-[#808080] mb-4">
+                SINCE — Y:1949
+              </p>
+              <h1 className="text-7xl md:text-9xl font-bold text-black mb-10">
+                Empowering Students, Shaping Futures.
+              </h1>
+            </div>
           </div>
         </BlurFade>
-        <div className="pt-56">
+
+        <NussuOrgChart />
+
+        <BlurFade delay={0.5} inView direction="up" offset={20}>
+          <section className="mt-64 w-full h-screen z-20 bg-white">
+            <div className="py-12 bg-white">
+              <Cards events={key_events} itemsPerRow={2} />
+            </div>
+          </section>
+        </BlurFade>
+
+        <div className="pt-[150vh]">
           <Footer />
         </div>
       </div>
