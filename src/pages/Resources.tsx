@@ -23,7 +23,7 @@ function Resources() {
   }, []);
 
   return (
-    <main className="relative w-full bg-white" style={{ height: "495vh" }}>
+    <main className="relative w-full bg-white" style={{ height: "650vh" }}>
       <section className="sticky top-0 h-screen z-10 bg-white">
         {showHero ? (
           <div className="flex flex-col items-center justify-center h-full text-center px-4">

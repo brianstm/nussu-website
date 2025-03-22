@@ -25,7 +25,7 @@ const AcademicSection: React.FC<AcademicSectionProps> = ({
                         <a
                             key={index}
                             href={resource.href}
-                            className="w-full tablet:w-[203.34px] laptop:w-[362.68px] bg-white overflow-hidden duration-300"
+                            className="w-full tablet:w-[203.34px] laptop:w-[362.68px] bg-white overflow-hidden duration-300 transform transition-transform hover:scale-105"
                         >
                             <img
                                 src={resource.imageUrl}
