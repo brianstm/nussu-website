@@ -81,7 +81,9 @@ export default function NavBar() {
                 whileHover={hoverMotion.whileHover}
                 transition={hoverMotion.transition}
               >
-                <Link href={`/${item.toLowerCase()}`}>{item}</Link>
+                <Link href={item === "Home" ? "/" : `/${item.toLowerCase()}`}>
+                  {item}
+                </Link>
               </motion.div>
             ))}
           </div>
