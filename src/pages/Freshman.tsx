@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Footer from "@/components/ui/footer";
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import guides from "@/data/guides";
-import GuideRow from "@/components/ui/GuideRow"
+import GuideRow from "@/components/ui/GuideRow";
 
 export default function Freshman() {
   const [showHero, setShowHero] = useState(true);
@@ -45,8 +45,8 @@ export default function Freshman() {
       </section>
 
       <section className="absolute top-[100vh] w-full h-screen z-20 bg-white">
-        <div className="flex flex-col items-center justify-center py-12 w-full bg-white">
-          <div className="w-full rounded-lg overflow-hidden px-4 tablet:max-w-[730px] laptop:max-w-[1208px]">
+        <div className="flex flex-col items-center justify-center w-full bg-white">
+          <div className="w-full rounded-lg overflow-hidden tablet:max-w-[730px] laptop:max-w-[1208px] m-auto p-8 tablet:p-0">
             <iframe
               className="w-full h-[677px] rounded-lg overflow-hidden transform translate-z-0"
               src="https://www.youtube.com/embed/-ZTgBCfPNWA?si=3CdXvAM1b8c-Bi92"
@@ -55,8 +55,8 @@ export default function Freshman() {
               allowFullScreen
             ></iframe>
           </div>
-          <p className="font-manrope text-[22px] tablet:text-[28px] pt-8 pb-8">75th NUSSU Welcome Video</p>
-          <div className="laptop:max-w-[1260px] tablet:max-w-[730px]">
+          <p className="font-manrope text-[22px] tablet:text-[28px] pt-8 pb-24">75th NUSSU Welcome Video</p>
+          <div className="laptop:max-w-[1260px] tablet:max-w-[730px] py-12">
             {guides.map((guide, index) => (
               <GuideRow key={index} guide={guide} index={index} />
             ))}
