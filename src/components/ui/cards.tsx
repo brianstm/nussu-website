@@ -16,7 +16,7 @@ interface CardsProps {
 
 const Card = ({ event }: { event: Event }) => {
   return (
-    <div className="group relative overflow-hidden rounded-lg bg-white h-[240px] laptop:h-[448px] mb-8">
+    <div className="group relative overflow-hidden rounded-lg bg-white h-[240px] laptop:h-[448px]">
       <a
         href={event.href}
         className="block transition duration-700 transform group-hover:scale-105 group-hover:brightness-75"
