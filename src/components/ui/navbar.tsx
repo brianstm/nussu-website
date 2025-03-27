@@ -128,7 +128,11 @@ export default function NavBar() {
                       onClick={toggleMenu}
                     >
                       <motion.a
-                        href={`/${item.toLowerCase().replace(" ", "-")}`}
+                        href={
+                          item === "Home"
+                            ? "/"
+                            : `/${item.toLowerCase().replace(" ", "-")}`
+                        }
                         className="
                             absolute inset-0 w-full h-full
                             flex items-center justify-start
