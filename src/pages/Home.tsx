@@ -1,10 +1,12 @@
-import { useState, useEffect, JSX } from "react";
+import { useState, useEffect, JSX, useRef } from "react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import Footer from "@/components/ui/footer";
 import Cards from "@/components/ui/cards";
 import { key_events, event_highlights } from "@/data/events";
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import NussuOrgChart from "@/components/ui/NussuOrgChart";
+import { TextReveal } from "@/components/ui/text-reveal";
+import { Title } from "@/components/ui/title";
 
 const backgroundImages1 = ["/images/1.jpg", "/images/2.jpg"];
 const backgroundImages2 = ["/images/3.jpg", "/images/4.jpg"];
@@ -26,6 +28,17 @@ function Home() {
   });
   const [opacity, setOpacity] = useState(1);
   const [isResetting, setIsResetting] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  // Track scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
@@ -121,7 +134,7 @@ function Home() {
   );
 
   return (
-    <div className="relative h-screen overflow-x-hidden">
+    <div className="relative min-h-screen overflow-x-hidden">
       {/* {renderImage(backgroundImages1, imageIndices.img1, positions.img1, 1, 0)}
       {renderImage(backgroundImages2, imageIndices.img2, positions.img2, 2, 20)}
       {renderImage(
@@ -132,34 +145,37 @@ function Home() {
         -20
       )}
       {renderImage(backgroundImages4, imageIndices.img4, positions.img4, 4, 10)} */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-10">
         <ScrollIndicator />
       </div>
-      <div className="relative z-10">
-        <BlurFade delay={0.25} inView direction="up" offset={20}>
-          <div className="mt-56 text-center">
-            <div className="flex flex-col items-center justify-center h-full text-center px-4">
-              <p className="text-base font-manrope md:text-lg tracking-wide text-[#808080] mb-4">
-                SINCE — Y:1949
-              </p>
-              <h1 className="text-7xl md:text-9xl font-bold text-black mb-10">
-                Empowering Students, Shaping Futures.
-              </h1>
-            </div>
-          </div>
-        </BlurFade>
 
-        <NussuOrgChart />
+      <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center z-10">
+        <div className="text-center">
+          <Title title="Empowering Students, Shaping Futures." description="" />
+        </div>
+      </div>
 
-        <BlurFade delay={0.5} inView direction="up" offset={20}>
-          <section className="mt-64 w-full h-screen z-20 bg-white">
-            <div className="py-12 bg-white">
+      <div className="relative z-20">
+        <div className="h-screen"></div>
+
+        <section className="relative w-full bg-white min-h-screen">
+          <div className="py-12 pt-24 bg-white">
+            <BlurFade delay={0.3} inView direction="up">
               <Cards events={key_events} itemsPerRow={2} />
-            </div>
-          </section>
-        </BlurFade>
+            </BlurFade>
+          </div>
+        </section>
 
-        <div className="pt-[150vh]">
+        <section className="w-full min-h-screen bg-white">
+          <BlurFade delay={0.3} inView direction="up">
+            <TextReveal />
+          </BlurFade>
+        </section>
+
+        {/* <NussuOrgChart /> */}
+
+        <div className="">
           <Footer />
         </div>
       </div>

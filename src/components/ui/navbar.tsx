@@ -81,7 +81,9 @@ export default function NavBar() {
                 whileHover={hoverMotion.whileHover}
                 transition={hoverMotion.transition}
               >
-                <Link href={`/${item.toLowerCase()}`}>{item}</Link>
+                <Link href={item === "Home" ? "/" : `/${item.toLowerCase()}`}>
+                  {item}
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -126,7 +128,11 @@ export default function NavBar() {
                       onClick={toggleMenu}
                     >
                       <motion.a
-                        href={`/${item.toLowerCase().replace(" ", "-")}`}
+                        href={
+                          item === "Home"
+                            ? "/"
+                            : `/${item.toLowerCase().replace(" ", "-")}`
+                        }
                         className="
                             absolute inset-0 w-full h-full
                             flex items-center justify-start

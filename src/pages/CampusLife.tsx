@@ -45,15 +45,13 @@ export default function CampusLifePage() {
       </section>
 
       <section className="absolute top-[100vh] w-full h-screen z-20 bg-white">
-        <div className="py-12 bg-white">
+        <div className="py-12 bg-white flex flex-col space-y-28">
           <Cards events={key_events} itemsPerRow={2} />
-          <span className="mt-16">
-            <Cards
-              events={event_highlights}
-              itemsPerRow={3}
-              headerText="Event Highlights"
-            />
-          </span>
+          <Cards
+            events={event_highlights}
+            itemsPerRow={3}
+            headerText="Event Highlights"
+          />
         </div>
       </section>
     </main>
