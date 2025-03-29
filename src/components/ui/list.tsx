@@ -1,46 +1,10 @@
 "use client"
 
 import { ArrowRight } from "@phosphor-icons/react";
-
-export interface Post {
-    date: string;
-    title: string;
-    category: string;
-    href: string;
+import {Post}  from "@/data/blogs"
+interface ListProps {
+    posts : Post[]
 }
-
-const posts: Post[] = [
-    {
-        date: 'December 18, 2024',
-        title: '[VACATION WEEK 3]',
-        category: 'Events',
-        href: './blog/vacation-week-3',
-    },
-    {
-        date: 'December 05, 2024',
-        title: 'Statement from NUSSU',
-        category: 'Policy',
-        href: './blog/statement-from-nussu',
-    },
-    {
-        date: 'November 28, 2024',
-        title: '[VACATION WEEK 1]',
-        category: 'Events',
-        href: './blog/vacation-week-1',
-    },
-    {
-        date: 'November 14, 2024',
-        title: "President's Year-end Letter 2024",
-        category: 'Message',
-        href: './blog/president-s-year-end-letter-2024',
-    },
-    {
-        date: 'September 22, 2024',
-        title: '[EXAM WEEK 1]',
-        category: 'Events',
-        href: './blog/exam-week-1',
-    },
-];
 
 const PostItem = ({ post }: { post: Post }) => {
     return (
@@ -65,7 +29,7 @@ const PostItem = ({ post }: { post: Post }) => {
     );
 };
 
-const List = () => {
+const List = ({posts}: ListProps) => {
     return (
         <div className="max-w-none p-8 tablet:p-0 tablet:max-w-[730px] laptop:max-w-[1208px] font-manrope mx-auto">
             <h2 className="text-section-name text-base pb-16 font-semibold">Announcements & Updates</h2>
