@@ -1,11 +1,11 @@
 "use client"
 
 import { ArrowRight } from "@phosphor-icons/react";
-import { Post } from "@/data/posts";
 
+import {Post}  from "@/data/blogs"
 interface ListProps {
-    posts: Post[];
-}
+    posts : Post[]
+
 
 const PostItem = ({ post }: { post: Post }) => {
     return (
