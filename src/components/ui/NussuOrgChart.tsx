@@ -29,7 +29,6 @@ const NussuOrgChart = () => {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Define the hierarchical structure based on the NUSSU organization
   const orgData = {
     name: "Sean Pang Kai Xiong",
     role: "President",
