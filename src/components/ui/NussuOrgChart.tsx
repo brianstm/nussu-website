@@ -481,73 +481,98 @@ const NussuOrgChart = () => {
     const nodeHeight = 60;
 
     // Dynamic spacing based on selected cell
-    const horizontalSpacing = selectedCell === "all" ? 25 : 20;
-    const verticalSpacing = selectedCell === "all" ? 40 : 50;
+    const horizontalSpacing = selectedCell === "all" ? 25 : 60; // Wider for vertical layout
+    const verticalSpacing = selectedCell === "all" ? 40 : 100; // Taller for vertical layout
 
-    // Base position calculation
-    let xPosition = x0 + level * (nodeWidth + horizontalSpacing);
-    let yPosition = y0 + siblingIndex * (nodeHeight + verticalSpacing);
+    if (selectedCell === "all") {
+      // Original horizontal layout for "all cells" view
+      // Base position calculation
+      let xPosition = x0 + level * (nodeWidth + horizontalSpacing);
+      let yPosition = y0 + siblingIndex * (nodeHeight + verticalSpacing);
 
-    // Only apply custom offsets when viewing ALL cells
-    if (level === 1 && selectedCell === "all") {
-      // These are the direct children of the President
-      switch (node.role) {
-        case "Communications Secretary":
-          xPosition += 0;
-          break;
-        case "Vice-President (Internal)":
-          xPosition += 800;
-          yPosition -= 600;
-          break;
-        case "Vice-President (External)":
-          xPosition += 1400;
-          yPosition -= 900;
-          break;
-        case "General Secretary":
-          xPosition += 2000;
-          break;
-        case "Financial Secretary":
-          xPosition += 2000;
-          yPosition += 600;
-          break;
-        case "Student Life Secretary":
-          xPosition += 1400;
-          yPosition += 0;
-          break;
-        case "Student Welfare Secretary":
-          xPosition += 600;
-          yPosition += 100;
-          break;
+      // Only apply custom offsets when viewing ALL cells
+      if (level === 1) {
+        // These are the direct children of the President
+        switch (node.role) {
+          case "Communications Secretary":
+            xPosition += 0;
+            break;
+          case "Vice-President (Internal)":
+            xPosition += 800;
+            yPosition -= 600;
+            break;
+          case "Vice-President (External)":
+            xPosition += 1400;
+            yPosition -= 900;
+            break;
+          case "General Secretary":
+            xPosition += 2000;
+            break;
+          case "Financial Secretary":
+            xPosition += 2000;
+            yPosition += 600;
+            break;
+          case "Student Life Secretary":
+            xPosition += 1400;
+            yPosition += 0;
+            break;
+          case "Student Welfare Secretary":
+            xPosition += 600;
+            yPosition += 100;
+            break;
+        }
       }
-    }
-    // Fixed spacing for 3rd level nodes and beyond
-    else if (level >= 2) {
-      // Use consistent vertical spacing for level 3+ nodes
-      const l3VerticalSpacing = selectedCell === "all" ? 80 : 80;
-      xPosition = node.parent?.x + nodeWidth + 50;
-      yPosition = y0 + siblingIndex * l3VerticalSpacing;
-    }
+      // Fixed spacing for 3rd level nodes and beyond
+      else if (level >= 2) {
+        // Use consistent vertical spacing for level 3+ nodes
+        const l3VerticalSpacing = 80;
+        xPosition = node.parent?.x + nodeWidth + 50;
+        yPosition = y0 + siblingIndex * l3VerticalSpacing;
+      }
 
-    // Set node position with custom offsets
-    node.x = xPosition;
+      // Set node position with custom offsets
+      node.x = xPosition;
 
-    // Add staggered pattern for children
-    if (level > 0 && level < 2) {
-      // Only apply staggering when viewing ALL cells
-      if (selectedCell === "all") {
+      // Add staggered pattern for children
+      if (level > 0 && level < 2) {
         const offset = siblingIndex % 2 === 0 ? 0 : nodeHeight * 0.8;
         node.y = yPosition + offset;
         node.offset = offset;
-      } else {
-        // Standard layout for filtered view
+      } else if (level >= 2) {
         node.y = yPosition;
         node.offset = 0;
+      } else {
+        node.y = y0 + siblingIndex * (nodeHeight + verticalSpacing);
+        node.offset = 0;
       }
-    } else if (level >= 2) {
-      node.y = yPosition;
-      node.offset = 0;
     } else {
-      node.y = y0 + siblingIndex * (nodeHeight + verticalSpacing);
+      // Top-to-bottom layout for specific cell view
+      const wideBranchSpacing = 280; // Space between branches
+
+      if (level === 0) {
+        // Root node (centered at top)
+        node.x = x0 + containerRef.current!.clientWidth / 2 - nodeWidth / 2;
+        node.y = 100; // Fixed top position
+      } else if (level === 1) {
+        // First level children spread horizontally below parent
+        const totalWidth =
+          siblingCount * nodeWidth + (siblingCount - 1) * wideBranchSpacing;
+        const startX = node.parent.x + nodeWidth / 2 - totalWidth / 2;
+
+        node.x = startX + siblingIndex * (nodeWidth + wideBranchSpacing);
+        node.y = node.parent.y + nodeHeight + verticalSpacing;
+      } else {
+        // Next levels stack vertically below their parent
+        const parentCenterX = node.parent.x + nodeWidth / 2;
+        const totalWidth =
+          siblingCount * nodeWidth + (siblingCount - 1) * horizontalSpacing;
+        const startX = parentCenterX - totalWidth / 2;
+
+        node.x = startX + siblingIndex * (nodeWidth + horizontalSpacing);
+        node.y = node.parent.y + nodeHeight + verticalSpacing;
+      }
+
+      // Store parent reference for later positioning
       node.offset = 0;
     }
 
@@ -557,19 +582,25 @@ const NussuOrgChart = () => {
         // Store parent reference for 3rd+ level positioning
         child.parent = node;
 
-        if (level < 2) {
-          calculateLayout(
-            child,
-            node.x + nodeWidth + horizontalSpacing,
-            node.y -
-              ((childCount - 1) * (nodeHeight + verticalSpacing)) / 2 +
-              i * (nodeHeight + verticalSpacing),
-            level + 1,
-            i,
-            childCount
-          );
+        if (selectedCell === "all") {
+          // Original calculation for "all cells" view
+          if (level < 2) {
+            calculateLayout(
+              child,
+              node.x + nodeWidth + horizontalSpacing,
+              node.y -
+                ((childCount - 1) * (nodeHeight + verticalSpacing)) / 2 +
+                i * (nodeHeight + verticalSpacing),
+              level + 1,
+              i,
+              childCount
+            );
+          } else {
+            calculateLayout(child, node.x, node.y, level + 1, i, childCount);
+          }
         } else {
-          calculateLayout(child, node.x, node.y, level + 1, i, childCount);
+          // Simplified calculation for vertical layout
+          calculateLayout(child, x0, y0, level + 1, i, childCount);
         }
       });
     }
@@ -625,6 +656,28 @@ const NussuOrgChart = () => {
     // Calculate layout with adjusted starting position
     calculateLayout(filteredData, 50, containerHeight / 2);
 
+    // Apply special positioning adjustments for nodes under Navyaa
+    if (selectedCell !== "all") {
+      const applySpecialPositioning = (node: any) => {
+        if (!node) return;
+
+        if (node.name === "Navyaa" && node.role === "Chief Secretary") {
+          if (node.children) {
+            node.children.forEach((child: any, index: number) => {
+              child.y += 100;
+            });
+          }
+        }
+
+        // Continue searching in children
+        if (node.children) {
+          node.children.forEach(applySpecialPositioning);
+        }
+      };
+
+      applySpecialPositioning(filteredData);
+    }
+
     // Create a group for zoom and pan
     const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
     g.setAttribute("transform", `translate(${pan.x},${pan.y}) scale(${zoom})`);
@@ -660,27 +713,33 @@ const NussuOrgChart = () => {
             ? 70
             : 60;
 
-        // Adjust the path based on sibling position
-        const startX = node.x + 220;
-        const startY = node.y + nodeHeight / 2;
-        const endX = child.x;
-        const endY = child.y + childHeight / 2;
+        // Define nodeWidth constant that was referenced but not defined
+        const nodeWidth = 220;
 
-        // Use different curve types based on whether we're viewing all cells or a specific cell
         let d;
 
         if (selectedCell === "all") {
+          // Original horizontal layout connections for all cells view
+          // Adjust the path based on sibling position
+          const startX = node.x + nodeWidth;
+          const startY = node.y + nodeHeight / 2;
+          const endX = child.x;
+          const endY = child.y + childHeight / 2;
+
           // Use curved paths for all cells view
           const controlX1 = startX + (endX - startX) * 0.3;
           const controlX2 = endX - (endX - startX) * 0.3;
           d = `M${startX},${startY} C${controlX1},${startY} ${controlX2},${endY} ${endX},${endY}`;
         } else {
-          // Use simpler, more direct paths for specific cell views
-          d = `M${startX},${startY} L${
-            startX + (endX - startX) / 2
-          },${startY} L${
-            startX + (endX - startX) / 2
-          },${endY} L${endX},${endY}`;
+          // Vertical layout connections for specific cell view
+          const startX = node.x + nodeWidth / 2;
+          const startY = node.y + nodeHeight;
+          const endX = child.x + nodeWidth / 2;
+          const endY = child.y;
+
+          // Use curved paths for top-to-bottom layout
+          const midY = startY + (endY - startY) / 2;
+          d = `M${startX},${startY} C${startX},${midY} ${endX},${midY} ${endX},${endY}`;
         }
 
         path.setAttribute("d", d);
@@ -977,7 +1036,6 @@ const NussuOrgChart = () => {
         NUSSU EXCO Organization Chart
       </h1>
 
-      {/* Cell filter buttons with improved styling */}
       <div className="flex flex-wrap justify-center gap-2 mb-4">
         <button
           className={`px-4 py-2 rounded-lg transition-all duration-200 ${
@@ -1010,10 +1068,9 @@ const NussuOrgChart = () => {
           ))}
       </div>
 
-      {/* Chart container with improved styling */}
       <div
         ref={containerRef}
-        className="overflow-hidden border border-gray-200 bg-white rounded-lg shadow-lg"
+        className="overflow-hidden border border-gray-200 bg-white rounded-lg"
         style={{ height: "80vh", width: "100%" }}
       >
         <svg ref={svgRef}></svg>

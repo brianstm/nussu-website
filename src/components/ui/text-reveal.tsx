@@ -19,7 +19,7 @@ export const TextReveal: FC<TextRevealProps> = ({ children, className }) => {
 
   return (
     <div ref={targetRef} className={cn("relative z-0 h-[150vh]", className)}>
-      <div className="sticky top-0 mx-auto flex h-screen items-center justify-center bg-transparent px-[1rem] py-[5rem]">
+      <div className="sticky top-0 mx-auto flex h-screen items-center justify-center bg-transparent px-[1rem] py-[5rem] font-medium">
         <div className="flex max-w-5xl flex-col items-center justify-center p-5 md:p-8 lg:p-10">
           <p className="font-manrope text-2xl md:text-4xl lg:text-5xl leading-[1.5] md:leading-[1.5] lg:leading-[1.5]">
             {sections.map((section, i) => {

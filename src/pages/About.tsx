@@ -31,7 +31,7 @@ function Home() {
 
         <section className="w-full h-full bg-white">
           <BlurFade delay={0.3} inView direction="up">
-            <TextReveal>{textRevealContent}</TextReveal>
+            <TextReveal className="font-medium">{textRevealContent}</TextReveal>
           </BlurFade>
         </section>
 
@@ -42,7 +42,7 @@ function Home() {
               <img
                 src="/images/exco.avif"
                 alt="NUSSU Executive Committee"
-                className="w-full mt-1"
+                className="w-full mt-5"
               />
             </BlurFade>
           </div>
@@ -57,7 +57,7 @@ function Home() {
               <img
                 src="/images/structure.avif"
                 alt="NUSSU Organisational Structure"
-                className="w-full mt-1"
+                className="w-full mt-5"
               />
             </BlurFade>
           </div>
