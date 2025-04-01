@@ -6,7 +6,7 @@ import Footer from "@/components/ui/footer";
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import AcademicSection from "@/components/ui/AcademicSection";
 import List from "@/components/ui/list";
-import { posts } from "@/data/posts";
+import { blogPosts } from "@/data/blogs";
 import academics from "@/data/academics";
 import WellbeingResources from "@/components/ui/WellbeingResources";
 import { wellbeingResources } from "@/data/wellbeingResources";
@@ -52,7 +52,7 @@ function Resources() {
         <div className="flex flex-col items-center justify-center w-full bg-white">
           <div className="w-full tablet:max-w-[730px] laptop:max-w-[1208px]">
             <div className="pb-[150px]">
-              <List posts={posts} />
+              <List posts={blogPosts} />
             </div>
             <div className="pb-[150px]">
               <AcademicSection resources={academics} />
