@@ -5,13 +5,13 @@ import NavBar from "./navbar";
 export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 bg-white z-50">
-      <div className="mx-auto w-full md:w-[80%] pl-6 flex items-center justify-between py-4">
-        <a href="/" className="z-50 flex items-center">
+      <div className="mx-auto w-full md:w-[60%] pl-6 flex items-center justify-between py-4">
+        <a href="/" className="flex items-center">
           <img
             src="https://framerusercontent.com/images/qupX9Wo64wAOHY9aGIlwZ1Zp5kU.png"
             alt="NUSSU Logo"
             width={126}
-            height={34.8}
+            height={35}
           />
         </a>
 
