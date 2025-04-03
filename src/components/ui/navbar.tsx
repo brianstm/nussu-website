@@ -91,10 +91,10 @@ export default function NavBar() {
             style={{ backgroundColor: "#111111", color: "#fafafa" }}
           >
             <div className="flex h-full items-center justify-center px-6">
-              {/* Keep the desktop layout exactly the same, just fix mobile layout */}
+              {/* On medium screens and up, arrange into three columns and align items at the bottom */}
               <div className="w-full md:max-w-[60%] flex flex-col md:flex-row md:items-end justify-between">
-                {/* Left Column: Navigation Links - Fixed for mobile */}
-                <div className="flex flex-col gap-4 md:gap-6 w-full">
+                {/* Left Column: Navigation Links */}
+                <div className="flex flex-col gap-4 md:gap-6">
                   {[
                     "Home",
                     "About",
@@ -110,7 +110,6 @@ export default function NavBar() {
                         display: "flex",
                         alignItems: "stretch",
                         flexShrink: 0,
-                        width: "auto", // Ensure width is responsive
                       }}
                       whileHover={{ x: 40, color: "#EF7B00" }}
                       transition={{ type: "tween", duration: 0.2 }}
@@ -130,19 +129,7 @@ export default function NavBar() {
                   ))}
                 </div>
 
-                {/* Mobile-only feedback form */}
-                <div className="md:hidden mt-6 mb-4">
-                  <div>
-                    <a
-                      href="https://forms.office.com/Pages/ResponsePage.aspx?id=Xu-lWwkxd06Fvc_rDTR-gv-6M0KLgbFDmfGuMFrpl9lUMkxOWFk5NlQyN0syWk85MjBDVjVYVDVLVS4u"
-                      className="relative inline-block pb-[0.1rem] after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[1px] after:bg-current after:scale-x-100 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-0"
-                    >
-                      Feedback Form
-                    </a>
-                  </div>
-                </div>
-
-                {/* Center Column: Feedback Form - Keeping original desktop layout */}
+                {/* Center Column: Feedback Form - EXACTLY as in original */}
                 <div className="hidden md:flex items-center justify-center mt-4 md:mt-0 ml-60">
                   <div>
                     <a
@@ -154,8 +141,20 @@ export default function NavBar() {
                   </div>
                 </div>
 
-                {/* Right Column: Address - Fixed for mobile */}
-                <div className="mt-6 md:mt-0 text-xl sm:text-2xl md:text-[22px]">
+                {/* Mobile-only feedback form with increased spacing */}
+                <div className="md:hidden mt-12 mb-8">
+                  <div>
+                    <a
+                      href="https://forms.office.com/Pages/ResponsePage.aspx?id=Xu-lWwkxd06Fvc_rDTR-gv-6M0KLgbFDmfGuMFrpl9lUMkxOWFk5NlQyN0syWk85MjBDVjVYVDVLVS4u"
+                      className="relative inline-block pb-[0.1rem] after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[1px] after:bg-current after:scale-x-100 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-0"
+                    >
+                      Feedback Form
+                    </a>
+                  </div>
+                </div>
+
+                {/* Right Column: Address */}
+                <div className="flex flex-col justify-end mt-12 md:mt-0 text-xl sm:text-2xl md:text-[22px]">
                   <span className="space-y-2 text-base sm:text-lg md:text-xl">
                     <p>Yusof Ishak House</p>
                     <p>31 Lower Kent Ridge Road</p>
