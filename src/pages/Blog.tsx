@@ -32,10 +32,10 @@ function Blog() {
     <main className="relative w-full bg-white">
       <section className="relative w-full h-[60vh] flex flex-col items-center justify-center bg-center text-white mb-0 mt-16 px-4">
         <div className="relative z-10 text-center px-6 mb-0">
-          <p className=" font-manrope text-sm md:text-base lg:text-lg text-gray-500 font-thin tracking-widest">
+          <p className=" font-manrope text-xs md:text-sm lg:text-base text-gray-500 font-normal">
             {post.date}
           </p>
-          <h1 className="text-4xl md:text-5xl font-manrope lg:text-6xl text-[5vw] font-light text-gray-900 leading-tight max-w-6xl mx-auto tracking-wider mt-6">
+          <h1 className="text-4xl md:text-5xl font-manrope lg:text-6xl text-[5vw] font-normal text-gray-900 leading-tight max-w-6xl mx-auto tracking-wider mt-6">
           {post.title}
         </h1>
           <div className="mt-8 md:mt-12">
@@ -57,7 +57,7 @@ function Blog() {
       </section>
     
   <section className="max-w-5xl mx-auto mt-16 px-4 mb-28">
-    <div className="text-center font-manrope text-black text-base md:text-lg font-thin mb-8 tracking-widest">
+    <div className="text-center font-manrope text-black text-base md:text-lg font-normal mb-8 tracking-widest">
       MORE RECENT STORIES
     </div>
     <hr className="border-gray-700 mb-6" />
@@ -78,7 +78,7 @@ function Blog() {
           
           <a href={post.href.replace("./blog/", "")} className="group flex items-center gap-2">
             <h3
-              className={` mt-4 font-manrope font-thin text-xl md:text-3xl font-thin leading-relaxed tracking-wide text-center md:text-left ${
+              className={` mt-4 font-manrope font-normal text-xl md:text-3xl font-thin leading-relaxed tracking-wide text-center md:text-left ${
                 index % 2 === 0 ? 'md:text-left' : 'md:text-right'
               } max-w-full md:max-w-[29ch] break-words group-hover:text-primary`}
             >
