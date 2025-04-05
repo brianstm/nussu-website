@@ -116,7 +116,6 @@ export default function NavBar() {
             style={{ backgroundColor: "#111111", color: "#fafafa" }}
           >
             <div className="flex h-full items-center justify-center px-6">
-              +
               <div className="w-full md:max-w-[60%] flex flex-col md:flex-row md:items-end justify-between">
                 <div className="flex flex-col gap-4 md:gap-6">
                   {navItems.map((item) => (
