@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface MenuToggleProps {
@@ -68,8 +68,33 @@ const MenuToggle = ({ toggle, isOpen }: MenuToggleProps) => {
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState("/");
+
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener("popstate", handleLocationChange);
+
+    return () => {
+      window.removeEventListener("popstate", handleLocationChange);
+    };
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const isActive = (item: string) => {
+    if (item === "Home" && currentPath === "/") {
+      return true;
+    }
+
+    const itemPath = `/${item.toLowerCase().replace(" ", "-")}`;
+    return currentPath === itemPath;
+  };
+
+  const navItems = ["Home", "About", "Campus Life", "Resources", "Freshman"];
 
   return (
     <>
@@ -91,29 +116,29 @@ export default function NavBar() {
             style={{ backgroundColor: "#111111", color: "#fafafa" }}
           >
             <div className="flex h-full items-center justify-center px-6">
-              {/* On medium screens and up, arrange into three columns and align items at the bottom */}
+              +
               <div className="w-full md:max-w-[60%] flex flex-col md:flex-row md:items-end justify-between">
-                {/* Left Column: Navigation Links */}
                 <div className="flex flex-col gap-4 md:gap-6">
-                  {[
-                    "Home",
-                    "About",
-                    "Campus Life",
-                    "Resources",
-                    "Freshman",
-                  ].map((item) => (
+                  {navItems.map((item) => (
                     <motion.div
                       key={item}
                       className="relative h-[2rem] md:h-[3.5rem]"
                       style={{
-                        color: item === "Home" ? "#EF7B00" : "#fafafa",
+                        color: isActive(item) ? "#EF7B00" : "#fafafa",
                         display: "flex",
                         alignItems: "stretch",
                         flexShrink: 0,
                       }}
                       whileHover={{ x: 40, color: "#EF7B00" }}
                       transition={{ type: "tween", duration: 0.2 }}
-                      onClick={toggleMenu}
+                      onClick={() => {
+                        const path =
+                          item === "Home"
+                            ? "/"
+                            : `/${item.toLowerCase().replace(" ", "-")}`;
+                        setCurrentPath(path);
+                        toggleMenu();
+                      }}
                     >
                       <motion.a
                         href={
@@ -129,7 +154,6 @@ export default function NavBar() {
                   ))}
                 </div>
 
-                {/* Center Column: Feedback Form - EXACTLY as in original */}
                 <div className="hidden md:flex items-center justify-center mt-4 md:mt-0 ml-60">
                   <div>
                     <a
@@ -141,7 +165,6 @@ export default function NavBar() {
                   </div>
                 </div>
 
-                {/* Mobile-only feedback form with increased spacing */}
                 <div className="md:hidden mt-12 mb-8">
                   <div>
                     <a
@@ -153,7 +176,6 @@ export default function NavBar() {
                   </div>
                 </div>
 
-                {/* Right Column: Address */}
                 <div className="flex flex-col justify-end mt-12 md:mt-0 text-xl sm:text-2xl md:text-[22px]">
                   <span className="space-y-2 text-base sm:text-lg md:text-xl">
                     <p>Yusof Ishak House</p>
