@@ -9,6 +9,10 @@ const RagFlag = () => {
       length={"1 Day"}
       location={"NUS UTown Green"}
       date={"8 August 2025"}
+      images={[
+        "https://framerusercontent.com/images/pMHz9nWjg6Ntqka5OC3qLvkGvs.jpg",
+        "https://framerusercontent.com/images/iQWkah0tFMMBj2m0x7vlpyKmWzM.jpg",
+      ]}
     />
   );
 };

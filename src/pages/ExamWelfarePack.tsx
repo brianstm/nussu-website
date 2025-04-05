@@ -9,6 +9,10 @@ const ExamWelfarePack = () => {
       length={"1 Week"}
       location={"Across NUS Campus"}
       date={"Semester 1 Week 3/4"}
+      images={[
+        "https://framerusercontent.com/images/EyED9Aho2BHaF2F7397gVxZ2DFY.jpg",
+        "https://framerusercontent.com/images/R563rDKK11kcsaA6HracHjiOZPQ.jpg",
+      ]}
     />
   );
 };

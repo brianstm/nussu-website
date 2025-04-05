@@ -9,6 +9,10 @@ const FreshmanWelfareGift = () => {
       length={"3 Days"}
       location={"NUS UTown"}
       date={"Semester 1 Week 3/4"}
+      images={[
+        "https://framerusercontent.com/images/Z9plf2eNI5KtqXFaSjiJAIRSU.jpg",
+        "https://framerusercontent.com/images/wQGaMvuMtrG6KKmgpC8oNAWHKE.jpg",
+      ]}
     />
   );
 };

@@ -7,6 +7,7 @@ interface EventCardProps {
   length: string;
   location: string;
   date: string;
+  images: string[];
 }
 
 const EventCard: React.FC<EventCardProps> = ({
@@ -16,6 +17,7 @@ const EventCard: React.FC<EventCardProps> = ({
   length,
   location,
   date,
+  images,
 }) => {
   return (
     <div className="mt-32 sm:mt-36 md:mt-44 pb-6 mb-6 mx-4 sm:mx-8 md:ml-[22%] md:mr-[auto] font-manrope text-[#111111] text-lg md:text-xl">
@@ -42,6 +44,17 @@ const EventCard: React.FC<EventCardProps> = ({
           <p className="font-semibold text-[#808080]">Date</p>
           <p>{date}</p>
         </div>
+      </div>
+      <div className="mt-24 flex flex-col gap-6 w-full sm:w-[90%] md:w-[70%]">
+        {images.map((src, i) => (
+          <div key={i} className="w-full overflow-hidden mb-8">
+            <img
+              src={src}
+              alt={`${title} image ${i + 1}`}
+              className="w-full h-auto object-cover rounded-lg"
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

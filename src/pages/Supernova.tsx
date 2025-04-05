@@ -9,6 +9,10 @@ const Supernova = () => {
       length={"1 Day"}
       location={"NUS UTown Green"}
       date={"15 August 2025"}
+      images={[
+        "https://framerusercontent.com/images/xDi3pMODivzxZ8ZFqN9jcIv1w.png",
+        "https://framerusercontent.com/images/fpXeVsxL9u7RIOIOpZ0b2OpP3Vg.jpg",
+      ]}
     />
   );
 };

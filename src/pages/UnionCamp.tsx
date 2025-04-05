@@ -9,6 +9,10 @@ const UnionCamp = () => {
       length={"3 Days"}
       location={"Across NUS Campus"}
       date={"11 - 13 July 2025"}
+      images={[
+        "https://framerusercontent.com/images/MZAMRPXSYtzcG9twaPw6PTvalfw.jpg",
+        "https://framerusercontent.com/images/THQucRpAxjvUjy5pvI6PYUjduJw.jpg",
+      ]}
     />
   );
 };

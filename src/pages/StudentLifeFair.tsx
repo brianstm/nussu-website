@@ -9,6 +9,10 @@ const StudentLifeFair = () => {
       length={"2 Days"}
       location={"NUS Yusof Ishak House"}
       date={"14 - 15 August 2025"}
+      images={[
+        "https://framerusercontent.com/images/G0k3fT6rtPqZruG1qiSPW2dxODk.png",
+        "https://framerusercontent.com/images/UoyVp6i5e4s5m3lqANMTSkqBps.jpg",
+      ]}
     />
   );
 };
