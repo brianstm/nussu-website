@@ -43,8 +43,8 @@ const MenuToggle = ({ toggle, isOpen }: MenuToggleProps) => {
           fill="transparent"
           strokeLinecap="round"
           variants={{
-            closed: { d: "M 21 13 L 40 13" },
-            hover: { d: "M 6 13 L 40 13" },
+            closed: { d: "M 21 13 L 40 13", opacity: 1 },
+            hover: { d: "M 6 13 L 40 13", opacity: 1 },
             open: { opacity: 0 },
           }}
           transition={{ duration: 0.3 }}
