@@ -12,6 +12,7 @@ import WellbeingResources from "@/components/ui/WellbeingResources";
 import { wellbeingResources } from "@/data/wellbeingResources";
 import FinancialMatters from "@/components/ui/FinancialMatters";
 import { financialCards } from '@/data/finance';
+import NussuServices from "@/components/ui/NussuServices";
 
 function Resources() {
   const [showHero, setShowHero] = useState(true);
@@ -26,7 +27,7 @@ function Resources() {
   }, []);
 
   return (
-    <main className="relative w-full bg-white" style={{ height: "650vh" }}>
+    <main className="relative w-full bg-white" style={{ height: "850vh" }}>
       <section className="sticky top-0 h-screen z-10 bg-white">
         {showHero ? (
           <div className="flex flex-col items-center justify-center h-full text-center px-4">
@@ -53,6 +54,9 @@ function Resources() {
       <section className="absolute top-[100vh] w-full h-screen z-20 bg-white">
         <div className="flex flex-col items-center justify-center w-full bg-white">
           <div className="w-full tablet:max-w-[730px] laptop:max-w-[1208px]">
+            <div className="pb-[150px]">
+              <NussuServices />
+            </div>
             <div className="pb-[150px]">
               <List posts={blogPosts} />
             </div>

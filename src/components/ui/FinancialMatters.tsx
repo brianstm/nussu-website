@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ArrowRight } from "@phosphor-icons/react";
 
 interface FinancialCardData {
     image: string;
@@ -30,7 +31,7 @@ const FinancialCard = ({
     return (
         <div
             className={`relative h-[303px] transition-all duration-500 overflow-hidden 
-        ${isHovered ? "flex-[1.2]" : isOppositeHovered ? "flex-[0.8]" : "flex-1"}`}
+                ${isHovered ? "flex-[1.2]" : isOppositeHovered ? "flex-[0.8]" : "flex-1"}`}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
@@ -49,23 +50,24 @@ const FinancialCard = ({
                 />
             </div>
 
+            <h3 className={`absolute bottom-0 left-0 p-6 text-white text-[44px] font-medium transition-all duration-500 
+                ${isHovered ? "translate-y-[-100px]" : "translate-y-0"}`}>
+                {title}
+            </h3>
             <div
-                className={`absolute bottom-0 left-0 p-6 transition-all duration-500 ${isHovered ? "translate-y-0" : "translate-y-6"
-                    }`}
+                className={`absolute bottom-0 left-0 p-6 transition-all duration-500 
+                    ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             >
                 <div className="text-white">
-                    <h3 className={`text-white text-[44px] font-medium mb-2 transition-all duration-500 ${isHovered ? "translate-y-0" : "translate-y-2"}`}>{title}</h3>
-
-                    <div
-                        className={`transition-all duration-500 ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                            }`}
+                    <p className="mb-3 text-manrope text-xl text-white font-light">{description}</p>
+                    <a
+                        href={link}
+                        className="flex items-center gap-2 font-medium hover:gap-3 transition-all"
                     >
-                        <p className="mb-3 text-manrope text-xl text-white font-light">{description}</p>
-                        <a
-                            href={link}
-                            className="flex items-center gap-2 font-medium hover:gap-3 transition-all"
-                        ></a>
-                    </div>
+                        <div className="flex items-center justify-center w-10 h-10 bg-white rounded-full">
+                            <ArrowRight size={20} weight="bold" className="text-black" />
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

@@ -7,15 +7,15 @@ export interface FinancialCardData {
 
 export const financialCards: FinancialCardData[] = [
   {
-    image: 'images/care_unit.png',
+    image: 'images/financial_aid.png',
     title: "Financial Aid",
     description: "Supplement your study and student expenses",
-    link: "/care-unit"
+    link: "https://www.nus.edu.sg/oam/financial-aid"
   },
   {
-    image: '/images/freshman_guide.png',
+    image: '/images/scholarships.png',
     title: "Scholarships",
     description: "Recognition of outstanding students",
-    link: "/freshman-guide"
+    link: "https://www.nus.edu.sg/oam/scholarships"
   }
 ];
