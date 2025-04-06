@@ -4,8 +4,8 @@ const Footer = () => {
   const marqueeText = "GET IN TOUCH";
 
   return (
-    <footer className="bg-primary text-foreground p-8 relative overflow-hidden md:h-[95vh] h-[60vh]">
-      <div className="absolute bottom-0 left-0 w-full h-[50%] overflow-hidden md:block hidden">
+    <footer className="bg-primary text-foreground p-8 relative overflow-hidden md:h-[80vh] h-[60vh]">
+      <div className="absolute bottom-0 left-0 w-full h-[75%] overflow-hidden md:block hidden">
         <motion.div
           className="flex whitespace-nowrap text-[30rem] font-bold uppercase text-background"
           style={{ width: "max-content" }}
@@ -38,29 +38,23 @@ const Footer = () => {
           <span className="mr-20">{marqueeText}</span>
           <span className="mr-20">{marqueeText}</span>
           <span className="mr-20">{marqueeText}</span>
-          <span className="mr-20">{marqueeText}</span>
         </motion.div>
       </div>
 
-      <div className="md:px-[7rem] md:pt-[9rem] flex flex-col gap-16 pt-[7rem]">
+      <div className="md:px-[7rem] md:pt-[4rem] flex flex-col gap-16 pt-[7rem]">
         <div className="relative flex flex-col gap-12 md:flex-row justify-between md:items-center text-center md:text-left font-manrope text-background md:text-[1.35rem] font-light">
           <div className="flex flex-col gap-2 text-start">
-            <p>S6 Level 5 Science</p>
+            <p>Yusof Ishak House</p>
             <div className="flex md:flex-col flex-row md:gap-2 gap-1">
-              <p>Drive 2 Singapore</p>
-              <p>117548</p>
+              <p>31 Lower Kent Ridge Road</p>
+              <p>Singapore 119078</p>
             </div>
           </div>
 
-          <div className="flex flex-col md:gap-5 gap-2 items-end md:items-start">
+          <div className="flex flex-col md:gap-5 gap-2 md:justify-end md:items-end">
             <div className="flex gap-6">
-              <a href="mailto:nussu@u.nus.edu" className="footer-link">
-                nussu@u.nus.edu
-              </a>
-            </div>
-            <div className="flex gap-6">
-              <a href="mailto:feedback@nussu.org.sg" className="footer-link">
-                feedback@nussu.org.sg
+              <a href="/feedback" className="footer-link">
+                Feedback Form
               </a>
             </div>
           </div>
@@ -95,10 +89,10 @@ const Footer = () => {
         </div>
         <div className="flex flex-col md:flex-row justify-between md:items-center text-center font-light font-manrope text-background tracking-wider">
           <p className="md:text-[0.9rem] text-[0.7rem]">
-            © 2024 — National University of Singapore Students' Union
+            © 2025 — National University of Singapore Students' Union
           </p>
           <p className="md:text-[0.9rem] text-[0.7rem]">
-            Designed by Arnav Goel, Brians Tjipto, Cheng Lui Leng, Zehua Zhang
+            Singapore
           </p>
         </div>
       </div>

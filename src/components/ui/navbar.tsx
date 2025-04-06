@@ -1,91 +1,105 @@
 "use client";
 
-import { useState } from "react";
-import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const Link = dynamic(() => import("next/link"), { ssr: false });
-
-const Path = (props: React.ComponentProps<typeof motion.path>) => (
-  <motion.path
-    fill="transparent"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    {...props}
-  />
-);
 
 interface MenuToggleProps {
   toggle: () => void;
   isOpen: boolean;
 }
 
-const MenuToggle = ({ toggle, isOpen }: MenuToggleProps) => (
-  <button onClick={toggle} className="focus:outline-none">
-    <motion.svg
-      initial={false}
-      animate={isOpen ? "open" : "closed"}
-      whileHover={{ scale: 1.1 }}
-      viewBox="0 0 23 23"
-      width="30"
-      height="30"
+const MenuToggle = ({ toggle, isOpen }: MenuToggleProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <button
+      onClick={toggle}
+      className="focus:outline-none"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <Path
-        variants={{
-          closed: { d: "M 2 2.5 L 20 2.5", stroke: "#003D7C" },
-          open: { d: "M 3 16.5 L 17 2.5", stroke: "#003D7C" },
-        }}
-      />
-      <Path
-        variants={{
-          closed: { opacity: 1, d: "M 2 9.423 L 20 9.423", stroke: "#003D7C" },
-          open: { opacity: 0 },
-        }}
-        transition={{ duration: 0.1 }}
-      />
-      <Path
-        variants={{
-          closed: { d: "M 2 16.346 L 20 16.346", stroke: "#003D7C" },
-          open: { d: "M 3 2.5 L 17 16.346", stroke: "#003D7C" },
-        }}
-      />
-    </motion.svg>
-  </button>
-);
+      <motion.svg
+        initial={false}
+        animate={isOpen ? "open" : isHovered ? "hover" : "closed"}
+        viewBox="0 0 42 30"
+        width="40"
+        height="30"
+      >
+        <motion.path
+          strokeWidth="2.5"
+          stroke="#003D7C"
+          fill="transparent"
+          strokeLinecap="round"
+          variants={{
+            closed: { d: "M 6 3 L 40 3" },
+            hover: { d: "M 16 3 L 40 3" },
+            open: { d: "M 10 2 L 30.5 22.5" },
+          }}
+          transition={{ duration: 0.3 }}
+        />
+        <motion.path
+          strokeWidth="2.5"
+          stroke="#003D7C"
+          fill="transparent"
+          strokeLinecap="round"
+          variants={{
+            closed: { d: "M 21 13 L 40 13", opacity: 1 },
+            hover: { d: "M 6 13 L 40 13", opacity: 1 },
+            open: { opacity: 0 },
+          }}
+          transition={{ duration: 0.3 }}
+        />
+        <motion.path
+          strokeWidth="2.5"
+          stroke="#003D7C"
+          fill="transparent"
+          strokeLinecap="round"
+          variants={{
+            closed: { d: "M 14 23 L 40 23" },
+            hover: { d: "M 22 23 L 40 23" },
+            open: { d: "M 10 22.5 L 30.5 2" },
+          }}
+          transition={{ duration: 0.3 }}
+        />
+      </motion.svg>
+    </button>
+  );
+};
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState("/");
+
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener("popstate", handleLocationChange);
+
+    return () => {
+      window.removeEventListener("popstate", handleLocationChange);
+    };
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const textColor = "text-black";
+  const isActive = (item: string) => {
+    if (item === "Home" && currentPath === "/") {
+      return true;
+    }
 
-  const hoverMotion = {
-    whileHover: { x: 5, color: "#FFA500" },
-    transition: { type: "tween", duration: 0.2 },
+    const itemPath = `/${item.toLowerCase().replace(" ", "-")}`;
+    return currentPath === itemPath;
   };
+
+  const navItems = ["Home", "About", "Campus Life", "Resources", "Freshman"];
 
   return (
     <>
       <nav className="font-sansbold top-0 left-0 w-full z-50 bg-transparent transition-all relative">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
-          <Link href="/" className={`${textColor} text-2xl font-bold`}>
-            Logo
-          </Link>
-
-          <div className="hidden md:flex gap-8">
-            {["Home", "About", "Contact"].map((item) => (
-              <motion.div
-                key={item}
-                style={{ color: "#000000" }}
-                whileHover={hoverMotion.whileHover}
-                transition={hoverMotion.transition}
-              >
-                <Link href={`/${item.toLowerCase()}`}>{item}</Link>
-              </motion.div>
-            ))}
-          </div>
-
           <MenuToggle toggle={toggleMenu} isOpen={isOpen} />
         </div>
       </nav>
@@ -102,37 +116,36 @@ export default function NavBar() {
             style={{ backgroundColor: "#111111", color: "#fafafa" }}
           >
             <div className="flex h-full items-center justify-center px-6">
-              <div className="w-full md:max-w-[80%] flex flex-col md:flex-row justify-between">
+              <div className="w-full md:max-w-[60%] flex flex-col md:flex-row md:items-end justify-between">
                 <div className="flex flex-col gap-4 md:gap-6">
-                  {[
-                    "Home",
-                    "About",
-                    "Campus Life",
-                    "Resources",
-                    "Freshman",
-                  ].map((item) => (
+                  {navItems.map((item) => (
                     <motion.div
                       key={item}
                       className="relative h-[2rem] md:h-[3.5rem]"
                       style={{
-                        color: item === "Home" ? "#EF7B00" : "#fafafa",
+                        color: isActive(item) ? "#EF7B00" : "#fafafa",
                         display: "flex",
                         alignItems: "stretch",
                         flexShrink: 0,
-                        width: "auto",
                       }}
                       whileHover={{ x: 40, color: "#EF7B00" }}
                       transition={{ type: "tween", duration: 0.2 }}
-                      onClick={toggleMenu}
+                      onClick={() => {
+                        const path =
+                          item === "Home"
+                            ? "/"
+                            : `/${item.toLowerCase().replace(" ", "-")}`;
+                        setCurrentPath(path);
+                        toggleMenu();
+                      }}
                     >
                       <motion.a
-                        href={`/${item.toLowerCase().replace(" ", "-")}`}
-                        className="
-                            absolute inset-0 w-full h-full
-                            flex items-center justify-start
-                            text-4xl sm:text-5xl md:text-[3.5rem]
-                            text-inherit no-underline whitespace-nowrap
-                          "
+                        href={
+                          item === "Home"
+                            ? "/"
+                            : `/${item.toLowerCase().replace(" ", "-")}`
+                        }
+                        className="absolute inset-0 w-full h-full flex items-center justify-start text-4xl sm:text-5xl md:text-[3.5rem] text-inherit no-underline whitespace-nowrap"
                       >
                         {item}
                       </motion.a>
@@ -140,68 +153,34 @@ export default function NavBar() {
                   ))}
                 </div>
 
-                <div
-                  className="
-                    mt-10 md:mt-16 md:ml-10
-                    text-xl sm:text-2xl md:text-[22px]
-                  "
-                >
-                  <div className="flex flex-col justify-center md:justify-start h-full md:h-auto mt-0 md:mt-10">
-                    <span className="space-y-2 lg:ml-8 text-base sm:text-lg md:text-xl sm:mt-6">
-                      <p>S6 Level 5 Science</p>
-                      <p>Drive 2 Singapore</p>
-                      <p>117548</p>
-                    </span>
-
-                    <div className="mt-20">
-                      <div className="mb-4">
-                        <a
-                          href="mailto:nussu@u.nus.edu"
-                          className="
-                            relative inline-block
-                            pb-1
-                            after:content-['']
-                            after:absolute
-                            after:left-0
-                            after:bottom-[-2px]
-                            after:w-full
-                            after:h-[1px]
-                            after:bg-current
-                            after:scale-x-100
-                            after:origin-left
-                            after:transition-transform
-                            after:duration-300
-                            hover:after:scale-x-0
-                          "
-                        >
-                          nussu@u.nus.edu
-                        </a>
-                      </div>
-                      <div>
-                        <a
-                          href="mailto:feedback@nussu.org.sg"
-                          className="
-                            relative inline-block
-                            pb-1
-                            after:content-['']
-                            after:absolute
-                            after:left-0
-                            after:bottom-[-2px]
-                            after:w-full
-                            after:h-[1px]
-                            after:bg-current
-                            after:scale-x-100
-                            after:origin-left
-                            after:transition-transform
-                            after:duration-300
-                            hover:after:scale-x-0
-                          "
-                        >
-                          feedback@nussu.org.sg
-                        </a>
-                      </div>
-                    </div>
+                <div className="hidden md:flex items-center justify-center mt-4 md:mt-0 ml-60">
+                  <div>
+                    <a
+                      href="https://forms.office.com/Pages/ResponsePage.aspx?id=Xu-lWwkxd06Fvc_rDTR-gv-6M0KLgbFDmfGuMFrpl9lUMkxOWFk5NlQyN0syWk85MjBDVjVYVDVLVS4u"
+                      className="relative inline-block pb-[0.1rem] after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[1px] after:bg-current after:scale-x-100 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-0"
+                    >
+                      Feedback Form
+                    </a>
                   </div>
+                </div>
+
+                <div className="md:hidden mt-12 mb-8">
+                  <div>
+                    <a
+                      href="https://forms.office.com/Pages/ResponsePage.aspx?id=Xu-lWwkxd06Fvc_rDTR-gv-6M0KLgbFDmfGuMFrpl9lUMkxOWFk5NlQyN0syWk85MjBDVjVYVDVLVS4u"
+                      className="relative inline-block pb-[0.1rem] after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[1px] after:bg-current after:scale-x-100 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-0"
+                    >
+                      Feedback Form
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-end mt-12 md:mt-0 text-xl sm:text-2xl md:text-[22px]">
+                  <span className="space-y-2 text-base sm:text-lg md:text-xl">
+                    <p>Yusof Ishak House</p>
+                    <p>31 Lower Kent Ridge Road</p>
+                    <p>Singapore 119078</p>
+                  </span>
                 </div>
               </div>
             </div>

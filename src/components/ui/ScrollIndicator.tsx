@@ -16,7 +16,7 @@ export default function ScrollIndicator() {
         />
       </div>
 
-      <p className="tracking-widest text-[#808080]">SCROLL</p>
+      <p className="tracking-widest text-[#808080] font-normal">SCROLL</p>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Cards from "@/components/ui/cards";
 import Footer from "@/components/ui/footer";
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
-import { key_events, event_highlights } from "@/data/events";
+import { key_events } from "@/data/events";
 
 export default function CampusLifePage() {
   const [showHero, setShowHero] = useState(true);
@@ -45,15 +45,8 @@ export default function CampusLifePage() {
       </section>
 
       <section className="absolute top-[100vh] w-full h-screen z-20 bg-white">
-        <div className="py-12 bg-white">
+        <div className="py-12 bg-white flex flex-col space-y-28">
           <Cards events={key_events} itemsPerRow={2} />
-          <span className="mt-16">
-            <Cards
-              events={event_highlights}
-              itemsPerRow={3}
-              headerText="Event Highlights"
-            />
-          </span>
         </div>
       </section>
     </main>

@@ -6,8 +6,8 @@ interface TitleProps {
 function Title({ title, description }: TitleProps) {
   return (
     <div className="flex flex-col justify-center items-center w-full px-4 text-center">
-      <div className="md:px-56 px-10">
-        <p className="md:text-md text-md font-light text-accent md:pb-4 pb-8 font-manrope tracking-widest">
+      <div className="md:px-64 px-10">
+        <p className="md:text-md text-md font-medium text-accent md:pb-4 pb-8 font-manrope tracking-widest">
           SINCE — Y:1949
         </p>
         <h1 className="font-sansbold md:text-8xl text-5xl leading-[1.2] md:leading-[1.3]">
