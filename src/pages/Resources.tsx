@@ -9,6 +9,8 @@ import { posts } from "@/data/posts";
 import academics from "@/data/academics";
 import WellbeingResources from "@/components/ui/WellbeingResources";
 import { wellbeingResources } from "@/data/wellbeingResources";
+import FinancialMatters from "@/components/ui/FinancialMatters";
+import { financialCards } from '@/data/finance';
 
 function Resources() {
   const [showHero, setShowHero] = useState(true);
@@ -52,6 +54,11 @@ function Resources() {
           <div className="w-full tablet:max-w-[730px] laptop:max-w-[1208px]">
             <div className="pb-[150px]">
               <List posts={posts} />
+            </div>
+            <div className="pb-[150px]">
+              <FinancialMatters
+                cards={[financialCards[0], financialCards[1]]}
+              />
             </div>
             <div className="pb-[150px]">
               <AcademicSection resources={academics} />
