@@ -11,6 +11,14 @@ interface MenuToggleProps {
 const MenuToggle = ({ toggle, isOpen }: MenuToggleProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const animationState = isOpen
+    ? isHovered
+      ? "openHover"
+      : "open"
+    : isHovered
+    ? "hover"
+    : "closed";
+
   return (
     <button
       onClick={toggle}
@@ -20,44 +28,44 @@ const MenuToggle = ({ toggle, isOpen }: MenuToggleProps) => {
     >
       <motion.svg
         initial={false}
-        animate={isOpen ? "open" : isHovered ? "hover" : "closed"}
+        animate={animationState}
         viewBox="0 0 42 30"
         width="40"
         height="30"
       >
         <motion.path
           strokeWidth="2.5"
-          stroke="#003D7C"
           fill="transparent"
           strokeLinecap="round"
           variants={{
-            closed: { d: "M 6 3 L 40 3" },
-            hover: { d: "M 16 3 L 40 3" },
-            open: { d: "M 10 2 L 30.5 22.5" },
+            closed: { d: "M 6 3 L 40 3", stroke: "#003D7C" },
+            hover: { d: "M 16 3 L 40 3", stroke: "#7e7e7e" },
+            open: { d: "M 10 2 L 30.5 22.5", stroke: "#003D7C" },
+            openHover: { d: "M 10 2 L 30.5 22.5", stroke: "#7e7e7e" },
           }}
           transition={{ duration: 0.3 }}
         />
         <motion.path
           strokeWidth="2.5"
-          stroke="#003D7C"
           fill="transparent"
           strokeLinecap="round"
           variants={{
-            closed: { d: "M 21 13 L 40 13", opacity: 1 },
-            hover: { d: "M 6 13 L 40 13", opacity: 1 },
-            open: { opacity: 0 },
+            closed: { d: "M 21 13 L 40 13", opacity: 1, stroke: "#003D7C" },
+            hover: { d: "M 6 13 L 40 13", opacity: 1, stroke: "#7e7e7e" },
+            open: { opacity: 0, stroke: "#003D7C" },
+            openHover: { opacity: 0, stroke: "#7e7e7e" },
           }}
           transition={{ duration: 0.3 }}
         />
         <motion.path
           strokeWidth="2.5"
-          stroke="#003D7C"
           fill="transparent"
           strokeLinecap="round"
           variants={{
-            closed: { d: "M 14 23 L 40 23" },
-            hover: { d: "M 22 23 L 40 23" },
-            open: { d: "M 10 22.5 L 30.5 2" },
+            closed: { d: "M 14 23 L 40 23", stroke: "#003D7C" },
+            hover: { d: "M 22 23 L 40 23", stroke: "#7e7e7e" },
+            open: { d: "M 10 22.5 L 30.5 2", stroke: "#003D7C" },
+            openHover: { d: "M 10 22.5 L 30.5 2", stroke: "#7e7e7e" },
           }}
           transition={{ duration: 0.3 }}
         />
