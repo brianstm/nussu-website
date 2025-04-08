@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 bg-white z-50">
       <div className="mx-auto w-full md:w-[60%] pl-6 flex items-center justify-between py-4">
-        <a href="/" className="flex items-center">
+        <a href="/" className="flex items-center z-50">
           <img
             src="https://framerusercontent.com/images/qupX9Wo64wAOHY9aGIlwZ1Zp5kU.png"
             alt="NUSSU Logo"
